@@ -1,0 +1,111 @@
+/* Accessibility styles */
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus visible styles for keyboard navigation */
+.focus-visible:focus,
+*:focus-visible {
+  outline: 2px solid var(--primary, #ff385c);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary, #ff385c);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  font-weight: bold;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-width: 2px !important;
+  }
+  
+  button, a {
+    text-decoration: underline;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus trap for modals */
+.modal-open {
+  overflow: hidden;
+}
+
+/* Accessible button states */
+button:disabled,
+button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Accessible form labels */
+label {
+  cursor: pointer;
+}
+
+label:has(+ input:disabled),
+label:has(+ input[aria-disabled="true"]) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ARIA live regions */
+[aria-live] {
+  position: relative;
+}
+
+/* Better focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary, #ff385c);
+  outline-offset: 2px;
+}
+
+/* Ensure sufficient color contrast */
+::selection {
+  background-color: var(--primary, #ff385c);
+  color: white;
+}
